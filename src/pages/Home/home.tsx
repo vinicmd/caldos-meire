@@ -2,7 +2,6 @@ import * as S from './styled'
 import CommandButton from '../../components/CommandButton'
 import Header from '../../components/Header'
 import Command from '../../components/Command'
-import { Alert, FlatList } from 'react-native'
 import { ClientProp } from '../../utils/types'
 import Button from '../../components/Button'
 import { RFValue } from 'react-native-responsive-fontsize'
@@ -58,17 +57,14 @@ const Home = () => {
       <Header />
       <CommandButton />
       <S.Main>
-        <FlatList
-          style={{ backgroundColor: '#191919' }}
+        <S.ClientList
           data={clientData}
           contentContainerStyle={{ marginTop: 10, paddingBottom: RFValue(75) }}
           keyExtractor={(_, idx) => `item_${idx}`}
           renderItem={({ item }: ClientProp) => <Command client={item} />}
         />
         <S.Footer>
-          <Button onPress={() => Alert.alert('Teste', 'teste')}>
-            Clientes
-          </Button>
+          <Button onPress={() => console.log('teste')}>Clientes</Button>
         </S.Footer>
       </S.Main>
     </S.ContainerHome>

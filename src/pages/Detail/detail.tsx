@@ -1,4 +1,4 @@
-import { Alert, FlatList } from 'react-native'
+import { Alert } from 'react-native'
 import * as S from './styled'
 
 import Button from '../../components/Button'
@@ -59,8 +59,9 @@ const Detail = () => {
       </S.NameView>
 
       <S.OrderWrapper>
-        <FlatList
+        <S.OrderList
           data={orders.items}
+          keyExtractor={(_, idx) => `item_${idx}`}
           renderItem={({ item }: OrderProp) => <Order data={item} />}
         />
       </S.OrderWrapper>

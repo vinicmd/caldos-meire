@@ -2,6 +2,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { FlatList } from 'react-native'
 
 export const ContainerDetail = styled(SafeAreaView)`
   height: 100%;
@@ -40,6 +41,8 @@ export const OrderWrapper = styled.View`
   padding: 20px;
   flex: 1;
 `
+
+export const OrderList = styled.FlatList`` as unknown as typeof FlatList
 
 export const NameText = styled.Text`
   color: #d3d3d3;
