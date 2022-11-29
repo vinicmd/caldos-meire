@@ -1,11 +1,13 @@
 import styled from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const ContainerHome = styled.SafeAreaView`
+export const ContainerHome = styled(SafeAreaView)`
   height: 100%;
+  background: #191919;
 `
 
-export const Main = styled.SafeAreaView`
+export const Main = styled.View`
   flex: 1;
 `
 

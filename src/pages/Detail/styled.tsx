@@ -1,8 +1,9 @@
 import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const ContainerDetail = styled.SafeAreaView`
+export const ContainerDetail = styled(SafeAreaView)`
   height: 100%;
   padding: 20px;
   background: #191919;
