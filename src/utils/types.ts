@@ -9,3 +9,7 @@ export interface Client {
 export interface ClientProp {
   item: Client
 }
+
+export type NavigationType = {
+  navigate: (route: string) => void
+}

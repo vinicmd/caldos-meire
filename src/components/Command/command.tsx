@@ -4,14 +4,14 @@ import * as S from './styled'
 
 type ClientProp = {
   client: Client
+  onPress: () => void
 }
 
-const Command = ({ client }: ClientProp) => {
-  console.log(client)
+const Command = ({ client, onPress }: ClientProp) => {
   return (
     client && (
       <S.CommandContainer>
-        <S.ClickableCommand>
+        <S.ClickableCommand onPress={onPress}>
           <S.TopLine>
             <S.ClientName>{client.name}</S.ClientName>
             <S.Telephone>{client.telephone}</S.Telephone>

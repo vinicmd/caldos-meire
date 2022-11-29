@@ -20,12 +20,12 @@ export const Header = styled.View`
 
 export const HeaderText = styled.Text`
   color: #d3d3d3;
-  font-size: ${RFValue(32)}px;
+  font-size: ${RFValue(28)}px;
 `
 
-export const PlusButton = styled.TouchableOpacity``
+export const Button = styled.TouchableOpacity``
 
-export const PlusIcon = styled(AntDesign)`
+export const Icon = styled(AntDesign)`
   color: #d72e2e;
 `
 
@@ -54,6 +54,10 @@ export const OrderFooter = styled.View`
   background: #191919;
   justify-content: center;
   align-items: center;
+`
+export const OrderText = styled.View`
+  width: 100%;
+  align-items: flex-end;
 `
 
 export const OrderTotal = styled.Text`

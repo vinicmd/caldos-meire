@@ -4,8 +4,11 @@ import * as S from './styled'
 import Button from '../../components/Button'
 import { Order } from '../../components/Order'
 import { formatCurrency } from '../../utils/formatCurrency'
+import { BackButton } from '../../components/BackButton'
+import { RFValue } from 'react-native-responsive-fontsize'
 
 const orders = {
+  id: 1,
   client: 'Vinicius Duarte',
   items: [
     {
@@ -48,10 +51,11 @@ const Detail = () => {
   return (
     <S.ContainerDetail>
       <S.Header>
-        <S.HeaderText>Detalhes do Pedido</S.HeaderText>
-        <S.PlusButton>
-          <S.PlusIcon name="pluscircleo" size={35} />
-        </S.PlusButton>
+        <BackButton />
+        <S.HeaderText>{`Pedido ${orders.id}`}</S.HeaderText>
+        <S.Button>
+          <S.Icon name="pluscircleo" size={RFValue(35)} />
+        </S.Button>
       </S.Header>
 
       <S.NameView>
@@ -66,10 +70,12 @@ const Detail = () => {
         />
       </S.OrderWrapper>
       <S.OrderFooter>
-        <S.OrderTotal>
-          {'Subtotal: '}
-          <S.GreenText>{` ${formatCurrency(getAmount())}`}</S.GreenText>
-        </S.OrderTotal>
+        <S.OrderText>
+          <S.OrderTotal>
+            {'Subtotal: '}
+            <S.GreenText>{` ${formatCurrency(getAmount())}`}</S.GreenText>
+          </S.OrderTotal>
+        </S.OrderText>
         <Button onPress={() => Alert.alert('Teste', 'teste')}>Encerrar</Button>
       </S.OrderFooter>
     </S.ContainerDetail>

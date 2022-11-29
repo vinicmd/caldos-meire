@@ -2,9 +2,10 @@ import * as S from './styled'
 import CommandButton from '../../components/CommandButton'
 import Header from '../../components/Header'
 import Command from '../../components/Command'
-import { ClientProp } from '../../utils/types'
+import { ClientProp, NavigationType } from '../../utils/types'
 import Button from '../../components/Button'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { useNavigation } from '@react-navigation/native'
 
 const clientData = [
   {
@@ -52,6 +53,8 @@ const clientData = [
 ]
 
 const Home = () => {
+  const navigation: NavigationType = useNavigation()
+
   return (
     <S.ContainerHome>
       <Header />
@@ -61,7 +64,12 @@ const Home = () => {
           data={clientData}
           contentContainerStyle={{ marginTop: 10, paddingBottom: RFValue(75) }}
           keyExtractor={(_, idx) => `item_${idx}`}
-          renderItem={({ item }: ClientProp) => <Command client={item} />}
+          renderItem={({ item }: ClientProp) => (
+            <Command
+              client={item}
+              onPress={() => navigation.navigate('Details')}
+            />
+          )}
         />
         <S.Footer>
           <Button onPress={() => console.log('teste')}>Clientes</Button>
