@@ -5,6 +5,7 @@ import { Detail } from './src/pages/Detail'
 import { Home } from './src/pages/Home'
 import { Clients } from './src/pages/Clients'
 import { RegistrationClient } from './src/pages/RegistrationClient'
+import { AddProduct } from './src/pages/AddProduct'
 
 const App = () => {
   const Stack = createNativeStackNavigator()
@@ -25,6 +26,7 @@ const App = () => {
           name="RegistrationClient"
           component={RegistrationClient}
         />
+        <Stack.Screen name="AddProducts" component={AddProduct} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -6,7 +6,8 @@ import { Order } from '../../components/Order'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { BackButton } from '../../components/BackButton'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { RouteProp } from '../../utils/types'
+import { NavigationType, RouteProp } from '../../utils/types'
+import { useNavigation } from '@react-navigation/native'
 
 const orders = {
   id: 1,
@@ -49,7 +50,7 @@ const Detail = ({ route }: RouteProp) => {
     return amount
   }
 
-  console.log(route)
+  const navigation: NavigationType = useNavigation()
 
   return (
     <S.ContainerDetail>
@@ -57,7 +58,13 @@ const Detail = ({ route }: RouteProp) => {
         <BackButton />
         <S.HeaderText>{`Pedido ${route.params?.id}`}</S.HeaderText>
         <S.Button>
-          <S.Icon name="pluscircleo" size={RFValue(35)} />
+          <S.Icon
+            name="pluscircleo"
+            size={RFValue(35)}
+            onPress={() =>
+              navigation.navigate('AddProducts', { id: route.params?.id })
+            }
+          />
         </S.Button>
       </S.Header>
 
@@ -79,7 +86,7 @@ const Detail = ({ route }: RouteProp) => {
             <S.GreenText>{` ${formatCurrency(getAmount())}`}</S.GreenText>
           </S.OrderTotal>
         </S.OrderText>
-        <Button onPress={() => Alert.alert('Teste', 'teste')}>Encerrar</Button>
+        <Button onPress={() => console.log('Teste')}>Encerrar</Button>
       </S.OrderFooter>
     </S.ContainerDetail>
   )

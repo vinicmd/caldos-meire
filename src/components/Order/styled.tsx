@@ -1,7 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
-export const ContainerOrder = styled.View`
+export const ContainerOrder = styled.TouchableOpacity`
   padding: 10px 0;
 `
 
