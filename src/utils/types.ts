@@ -12,6 +12,8 @@ export interface ClientProp {
 
 export type NavigationType = {
   navigate: (route: string, params?: {}) => void
+  goBack: () => void
+  dispatch: (navigation: void) => void
 }
 
 type Route = {

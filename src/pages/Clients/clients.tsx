@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { Modal } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { BackButton } from '../../components/BackButton'
 import Button from '../../components/Button'
+import { NavigationType } from '../../utils/types'
 import * as S from './styled'
 
 const clients = [
@@ -73,19 +75,21 @@ interface ClientsProps {
 }
 
 interface Client {
-  id: number | string
-  name: string
-  telephone: string
+  id?: number | string
+  name?: string
+  telephone?: string
 }
 
 const Clients = () => {
   const [modalVisible, setModalVisible] = useState(false)
-  const [clientName, setClientName] = useState('')
+  const [clientName, setClientName] = useState<Client>()
 
-  function changeModalVisibility(clientName: string = '') {
-    setClientName(clientName)
+  function changeModalVisibility(client?: Client) {
+    setClientName(client)
     return setModalVisible(!modalVisible)
   }
+
+  const navigation: NavigationType = useNavigation()
   return (
     <S.ClientsContainer>
       <Modal
@@ -105,7 +109,7 @@ const Clients = () => {
               </S.ModalCloseButton>
             </S.ModalHeader>
             <S.ModalOptions>
-              <S.ModalClientName>{clientName}</S.ModalClientName>
+              <S.ModalClientName>{clientName?.name}</S.ModalClientName>
               <Button
                 style={{ marginBottom: 16 }}
                 onPress={() => console.log('Criar')}
@@ -122,7 +126,7 @@ const Clients = () => {
       <S.Header>
         <BackButton />
         <S.HeaderText>{`Clientes`}</S.HeaderText>
-        <S.Button>
+        <S.Button onPress={() => navigation.navigate('RegistrationClient')}>
           <S.Icon name="pluscircleo" size={RFValue(35)} />
         </S.Button>
       </S.Header>
@@ -133,7 +137,7 @@ const Clients = () => {
           keyExtractor={(_, idx) => `item_${idx}`}
           renderItem={({ item }: ClientsProps) => {
             return (
-              <S.ClientWrapper onPress={() => changeModalVisibility(item.name)}>
+              <S.ClientWrapper onPress={() => changeModalVisibility(item)}>
                 <S.ClientName>{item.name}</S.ClientName>
                 <S.ClientTelephone>{item.telephone}</S.ClientTelephone>
               </S.ClientWrapper>
