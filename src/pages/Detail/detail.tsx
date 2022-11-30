@@ -6,6 +6,7 @@ import { Order } from '../../components/Order'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { BackButton } from '../../components/BackButton'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { RouteProp } from '../../utils/types'
 
 const orders = {
   id: 1,
@@ -37,7 +38,7 @@ interface OrderProp {
   }
 }
 
-const Detail = () => {
+const Detail = ({ route }: RouteProp) => {
   function getAmount() {
     let amount = 0
 
@@ -48,11 +49,13 @@ const Detail = () => {
     return amount
   }
 
+  console.log(route)
+
   return (
     <S.ContainerDetail>
       <S.Header>
         <BackButton />
-        <S.HeaderText>{`Pedido ${orders.id}`}</S.HeaderText>
+        <S.HeaderText>{`Pedido ${route.params?.id}`}</S.HeaderText>
         <S.Button>
           <S.Icon name="pluscircleo" size={RFValue(35)} />
         </S.Button>

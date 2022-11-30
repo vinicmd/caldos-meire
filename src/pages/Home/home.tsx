@@ -67,12 +67,14 @@ const Home = () => {
           renderItem={({ item }: ClientProp) => (
             <Command
               client={item}
-              onPress={() => navigation.navigate('Details')}
+              onPress={() => navigation.navigate('Details', { id: item.id })}
             />
           )}
         />
         <S.Footer>
-          <Button onPress={() => console.log('teste')}>Clientes</Button>
+          <Button onPress={() => navigation.navigate('Clients')}>
+            Clientes
+          </Button>
         </S.Footer>
       </S.Main>
     </S.ContainerHome>

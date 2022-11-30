@@ -11,5 +11,16 @@ export interface ClientProp {
 }
 
 export type NavigationType = {
-  navigate: (route: string) => void
+  navigate: (route: string, params?: {}) => void
+}
+
+type Route = {
+  key?: string
+  name?: string
+  params?: { id?: string | number }
+  path?: string
+}
+
+export interface RouteProp {
+  route: Route
 }
