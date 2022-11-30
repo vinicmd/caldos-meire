@@ -68,10 +68,22 @@ const clients = [
   },
 ]
 
+interface ClientsProps {
+  item: Client
+}
+
+interface Client {
+  id: number | string
+  name: string
+  telephone: string
+}
+
 const Clients = () => {
   const [modalVisible, setModalVisible] = useState(false)
+  const [clientName, setClientName] = useState('')
 
-  function changeModalVisibility() {
+  function changeModalVisibility(clientName: string = '') {
+    setClientName(clientName)
     return setModalVisible(!modalVisible)
   }
   return (
@@ -84,7 +96,7 @@ const Clients = () => {
           changeModalVisibility()
         }}
       >
-        <S.Overlay activeOpacity={1} onPress={() => changeModalVisibility()}>
+        <S.Overlay activeOpacity={1} onPressIn={() => changeModalVisibility()}>
           <S.ModalBody activeOpacity={1} onPress={() => null}>
             <S.ModalHeader>
               <S.ModalText>Selecione a opção</S.ModalText>
@@ -93,6 +105,7 @@ const Clients = () => {
               </S.ModalCloseButton>
             </S.ModalHeader>
             <S.ModalOptions>
+              <S.ModalClientName>{clientName}</S.ModalClientName>
               <Button
                 style={{ marginBottom: 16 }}
                 onPress={() => console.log('Criar')}
@@ -117,10 +130,10 @@ const Clients = () => {
       <S.ListContainer>
         <S.ClientsList
           data={clients}
-          keyExtractor={(item: any) => item.id}
-          renderItem={({ item }: any) => {
+          keyExtractor={(_, idx) => `item_${idx}`}
+          renderItem={({ item }: ClientsProps) => {
             return (
-              <S.ClientWrapper onPress={() => changeModalVisibility()}>
+              <S.ClientWrapper onPress={() => changeModalVisibility(item.name)}>
                 <S.ClientName>{item.name}</S.ClientName>
                 <S.ClientTelephone>{item.telephone}</S.ClientTelephone>
               </S.ClientWrapper>

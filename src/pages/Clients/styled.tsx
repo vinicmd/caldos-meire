@@ -93,3 +93,6 @@ export const ModalCloseButton = styled(Button)`
   position: absolute;
   right: 10px;
 `
+export const ModalClientName = styled(ClientName)`
+  margin-bottom: 16px;
+`
