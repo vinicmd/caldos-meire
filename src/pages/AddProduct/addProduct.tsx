@@ -1,10 +1,11 @@
+import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { Modal, ToastAndroid } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { BackButton } from '../../components/BackButton'
 import Button from '../../components/Button'
 import { formatCurrency } from '../../utils/formatCurrency'
-import { RouteProp } from '../../utils/types'
+import { NavigationType, RouteProp } from '../../utils/types'
 import * as S from './styled'
 
 const products = [
@@ -60,6 +61,8 @@ const AddProduct = ({ route }: RouteProp) => {
 
   const [selectedProducts] = useState(Array<SelectedProducts>)
 
+  const navigation: NavigationType = useNavigation()
+
   const changeModalVisibility = (product?: Product) => {
     setProduct(product)
     return setModalVisible(!modalVisible)
@@ -112,7 +115,20 @@ const AddProduct = ({ route }: RouteProp) => {
     return setQuantity(0)
   }
 
-  const handleAddProducts = () => {}
+  const handleAddProducts = async () => {
+    try {
+      const listProducts: SelectedProducts[] = []
+      selectedProducts.forEach((product) => {
+        product.quantity && listProducts.push(product)
+      })
+
+      console.log(listProducts)
+
+      navigation.goBack()
+    } catch (error: unknown) {
+      console.log(error)
+    }
+  }
 
   return (
     <S.AddProductContainer>

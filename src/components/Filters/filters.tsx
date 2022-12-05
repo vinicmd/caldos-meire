@@ -1,19 +1,19 @@
 import * as S from './styled'
 
-const CommandButton = () => {
+const Filters = () => {
   return (
-    <S.CommandContainer>
-      <S.Button>
+    <S.FilterContainer>
+      <S.Button selected={true}>
         <S.ButtonText>Abertas</S.ButtonText>
       </S.Button>
-      <S.Button>
+      <S.Button selected={false}>
         <S.ButtonText>Fechados</S.ButtonText>
       </S.Button>
-      <S.Button>
+      <S.Button selected={false}>
         <S.ButtonText>Todos</S.ButtonText>
       </S.Button>
-    </S.CommandContainer>
+    </S.FilterContainer>
   )
 }
 
-export default CommandButton
+export { Filters }

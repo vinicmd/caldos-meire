@@ -1,9 +1,10 @@
 export interface Client {
   id: number
-  name: String
-  telephone: String
+  name: string
+  telephone: string
   amount: number
-  items: String
+  items: string
+  status: string
 }
 
 export interface ClientProp {

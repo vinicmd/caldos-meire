@@ -11,12 +11,6 @@ export const ClickableCommand = styled.TouchableOpacity`
   justify-content: space-between;
 `
 
-export const Separator = styled.View`
-  width: 100%;
-  height: 1px;
-  background: #fff;
-`
-
 export const TopLine = styled.View`
   flex-direction: row;
   justify-content: space-between;

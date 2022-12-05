@@ -12,6 +12,34 @@ export const Main = styled.View`
   flex: 1;
 `
 
+export const FilterContainer = styled.View`
+  height: 50px;
+  width: 100%;
+  padding: 10px 5px;
+  justify-content: space-between;
+  flex-direction: row;
+  background: #191919;
+`
+
+export const Button = styled.TouchableOpacity`
+  width: 120px;
+  background: #545454;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ButtonText = styled.Text`
+  font-size: ${RFValue(18)}px;
+  color: #f3f3f3;
+`
+
+export const Separator = styled.View`
+  width: 100%;
+  height: 1px;
+  background: #fff;
+`
+
 export const Footer = styled.View`
   position: absolute;
   bottom: ${RFValue(16)}px;

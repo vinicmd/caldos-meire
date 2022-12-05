@@ -1,7 +1,7 @@
-import styled from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import styled from 'styled-components/native'
 
-export const CommandContainer = styled.View`
+export const FilterContainer = styled.View`
   height: 50px;
   width: 100%;
   padding: 10px 5px;
@@ -12,7 +12,7 @@ export const CommandContainer = styled.View`
 
 export const Button = styled.TouchableOpacity`
   width: 120px;
-  background: #545454;
+  background: ${(props) => (props.selected ? '#f3f3f3' : '#545454')};
   border-radius: 10px;
   align-items: center;
   justify-content: center;
@@ -20,5 +20,5 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: ${RFValue(18)}px;
-  color: #f3f3f3;
+  color: ${(props) => (props.selected ? '#191919' : '#f3f3f3')};
 `

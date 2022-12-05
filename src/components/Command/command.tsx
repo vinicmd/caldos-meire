@@ -23,7 +23,6 @@ const Command = ({ client, onPress }: ClientProp) => {
             <S.Amount>{formatCurrency(client.amount)}</S.Amount>
           </S.BottomLine>
         </S.ClickableCommand>
-        <S.Separator />
       </S.CommandContainer>
     )
   )
