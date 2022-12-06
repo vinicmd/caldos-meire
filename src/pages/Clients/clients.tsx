@@ -82,14 +82,19 @@ interface Client {
 
 const Clients = () => {
   const [modalVisible, setModalVisible] = useState(false)
-  const [clientName, setClientName] = useState<Client>()
+  const [client, setClient] = useState<Client>()
+
+  const navigation: NavigationType = useNavigation()
 
   function changeModalVisibility(client?: Client) {
-    setClientName(client)
+    setClient(client)
     return setModalVisible(!modalVisible)
   }
 
-  const navigation: NavigationType = useNavigation()
+  function handleEdit(clientData?: Client) {
+    navigation.navigate('RegistrationClient', { client: clientData })
+  }
+
   return (
     <S.ClientsContainer>
       <Modal
@@ -109,15 +114,15 @@ const Clients = () => {
               </S.ModalCloseButton>
             </S.ModalHeader>
             <S.ModalOptions>
-              <S.ModalClientName>{clientName?.name}</S.ModalClientName>
+              <S.ModalClientName>{client?.name}</S.ModalClientName>
               <Button
                 style={{ marginBottom: 16 }}
                 onPress={() => console.log('Criar')}
               >
                 Criar Pedido
               </Button>
-              <Button onPress={() => console.log('editar')}>
-                Editar Detalhes
+              <Button onPress={() => handleEdit(client)}>
+                Editar Cadastro
               </Button>
             </S.ModalOptions>
           </S.ModalBody>

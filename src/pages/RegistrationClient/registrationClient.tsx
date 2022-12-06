@@ -1,29 +1,38 @@
 import { useNavigation } from '@react-navigation/native'
+import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { BackButton } from '../../components/BackButton'
 import Button from '../../components/Button'
-import { NavigationType } from '../../utils/types'
+import { showToast } from '../../utils/toast'
+import { NavigationType, RouteProp } from '../../utils/types'
 import * as S from './styled'
 
-interface Data {
-  name: string
-  telephone: string
+interface Client {
+  id?: string
+  name?: string
+  telephone?: string
 }
-const RegistrationClient = () => {
+
+const RegistrationClient = ({ route }: RouteProp) => {
   const navigation: NavigationType = useNavigation()
+
+  const data = route.params
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
-      telephone: '',
+      id: `${data && data.client ? data.client.id : ''}`,
+      name: `${data && data.client ? data.client.name : ''}`,
+      telephone: `${data && data.client ? data.client.telephone : ''}`,
     },
   })
 
-  const onSubmit = (data: Data) => {
+  const onSubmit = (data: Client) => {
     try {
+      showToast('Salvo')
       navigation.dispatch(navigation.navigate('Home'))
       console.log(data)
     } catch (error) {

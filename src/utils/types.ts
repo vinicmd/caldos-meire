@@ -20,7 +20,10 @@ export type NavigationType = {
 type Route = {
   key?: string
   name?: string
-  params?: { id?: string | number }
+  params?: {
+    id?: string | number
+    client?: { id?: string; name?: string; telephone?: string }
+  }
   path?: string
 }
 
