@@ -7,11 +7,12 @@ interface OrderProp {
     quantity: number
     unityPrice: number
   }
+  onPress: () => void
 }
 
-const Order = ({ data }: OrderProp) => {
+const Order = ({ data, onPress }: OrderProp) => {
   return (
-    <S.ContainerOrder>
+    <S.ContainerOrder onPress={onPress}>
       <S.OrderDescription>
         <S.OrderName>
           {'> '}

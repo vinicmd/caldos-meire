@@ -1,8 +1,8 @@
-import { RFValue } from 'react-native-responsive-fontsize'
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { FlatList } from 'react-native'
+import { FlatList, TouchableOpacity } from 'react-native'
 
 export const ContainerDetail = styled(SafeAreaView)`
   height: 100%;
@@ -68,4 +68,49 @@ export const OrderTotal = styled.Text`
 export const GreenText = styled.Text`
   color: #219653;
   font-size: ${RFValue(36)}px;
+`
+
+export const Overlay = styled(TouchableOpacity)`
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+`
+
+export const ModalBody = styled(TouchableOpacity)`
+  border-radius: 20px;
+  width: 90%;
+  height: ${RFPercentage(40)}px;
+
+  padding: 20px;
+
+  background-color: #191919;
+`
+
+export const ModalHeader = styled.View`
+  align-items: center;
+`
+
+export const ModalOptions = styled.View`
+  height: 80%;
+
+  justify-content: center;
+  align-items: center;
+`
+
+export const ModalText = styled.Text`
+  font-size: ${RFValue(24)}px;
+  color: #f2f2f2;
+  text-align: center;
+`
+
+export const ModalCloseButton = styled(Button)`
+  position: absolute;
+  right: 10px;
+`
+export const ModalClientName = styled.Text`
+  font-size: ${RFValue(24)}px;
+  margin-bottom: 16px;
 `

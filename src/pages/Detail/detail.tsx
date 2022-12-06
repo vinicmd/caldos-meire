@@ -1,6 +1,6 @@
-import { Alert } from 'react-native'
+import { useState } from 'react'
+import { Modal } from 'react-native'
 import * as S from './styled'
-
 import Button from '../../components/Button'
 import { Order } from '../../components/Order'
 import { formatCurrency } from '../../utils/formatCurrency'
@@ -14,16 +14,19 @@ const orders = {
   client: 'Vinicius Duarte',
   items: [
     {
+      id: '1',
       product: 'Caldo de Frango',
       quantity: 1,
       unityPrice: 14.0,
     },
     {
+      id: '2',
       product: 'Caldo de Feijão',
       quantity: 2,
       unityPrice: 12.0,
     },
     {
+      id: '3',
       product: 'Coca-cola (lata)',
       quantity: 3,
       unityPrice: 12.0,
@@ -31,15 +34,20 @@ const orders = {
   ],
 }
 
+interface Order {
+  id: string | number
+  product: string
+  quantity: number
+  unityPrice: number
+}
+
 interface OrderProp {
-  item: {
-    product: string
-    quantity: number
-    unityPrice: number
-  }
+  item: Order
 }
 
 const Detail = ({ route }: RouteProp) => {
+  const [clickedOrder, setClickedOrder] = useState<Order>()
+  const [modalVisible, setModalVisible] = useState(false)
   function getAmount() {
     let amount = 0
 
@@ -50,10 +58,51 @@ const Detail = ({ route }: RouteProp) => {
     return amount
   }
 
+  function handleOrder(order: Order) {
+    clickedOrder && clickedOrder.id !== order.id && setClickedOrder(order)
+    setModalVisible(!modalVisible)
+  }
+
+  function changeModalVisibility(order?: Order) {
+    order && setClickedOrder(order)
+    return setModalVisible(!modalVisible)
+  }
+
   const navigation: NavigationType = useNavigation()
 
   return (
     <S.ContainerDetail>
+      <Modal
+        animationType="fade"
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => {
+          changeModalVisibility()
+        }}
+      >
+        <S.Overlay activeOpacity={1}>
+          <S.ModalBody activeOpacity={1} onPress={() => null}>
+            <S.ModalHeader>
+              <S.ModalText>Selecione a opção</S.ModalText>
+              <S.ModalCloseButton onPress={() => changeModalVisibility()}>
+                <S.Icon name="closecircleo" size={RFValue(26)} />
+              </S.ModalCloseButton>
+            </S.ModalHeader>
+            <S.ModalOptions>
+              <S.ModalClientName>{clickedOrder?.product}</S.ModalClientName>
+              <Button
+                style={{ marginBottom: 16 }}
+                onPress={() => console.log('Criar')}
+              >
+                Criar Pedido
+              </Button>
+              <Button onPress={() => console.log('Teste')}>
+                Editar Cadastro
+              </Button>
+            </S.ModalOptions>
+          </S.ModalBody>
+        </S.Overlay>
+      </Modal>
       <S.Header>
         <BackButton />
         <S.HeaderText>{`Pedido ${route.params?.id}`}</S.HeaderText>
@@ -76,7 +125,9 @@ const Detail = ({ route }: RouteProp) => {
         <S.OrderList
           data={orders.items}
           keyExtractor={(_, idx) => `item_${idx}`}
-          renderItem={({ item }: OrderProp) => <Order data={item} />}
+          renderItem={({ item }: OrderProp) => (
+            <Order onPress={() => handleOrder(item)} data={item} />
+          )}
         />
       </S.OrderWrapper>
       <S.OrderFooter>
