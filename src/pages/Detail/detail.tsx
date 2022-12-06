@@ -59,7 +59,7 @@ const Detail = ({ route }: RouteProp) => {
   }
 
   function handleOrder(order: Order) {
-    clickedOrder && clickedOrder.id !== order.id && setClickedOrder(order)
+    order && setClickedOrder(order)
     setModalVisible(!modalVisible)
   }
 
