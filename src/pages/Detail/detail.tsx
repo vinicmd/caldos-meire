@@ -80,7 +80,7 @@ const Detail = ({ route }: RouteProp) => {
           changeModalVisibility()
         }}
       >
-        <S.Overlay activeOpacity={1}>
+        <S.Overlay activeOpacity={1} onPressIn={() => changeModalVisibility()}>
           <S.ModalBody activeOpacity={1} onPress={() => null}>
             <S.ModalHeader>
               <S.ModalText>Selecione a opção</S.ModalText>
